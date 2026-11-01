@@ -1,0 +1,234 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f3e7e9 0%, #e3eeff 100%);
+    color: #4a4a4a;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 35px;
+    color: #7b6d8d;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #8f8f8f;
+    font-weight: 500;
+}
+
+.contenedor-principal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.seccion-camara, .seccion-resultados {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(180, 180, 200, 0.15);
+    flex: 1;
+    min-width: 320px;
+    max-width: 500px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.seccion-camara:hover, .seccion-resultados:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(180, 180, 200, 0.25);
+}
+
+#webcam-container {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #eef1f6;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 4px solid #d4e0f0;
+}
+
+#webcam-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+.btn-primario {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(168, 192, 255, 0.4);
+}
+
+.btn-primario:hover {
+    background: linear-gradient(135deg, #b8ccff, #4f3ba6);
+    box-shadow: 0 6px 20px rgba(168, 192, 255, 0.6);
+}
+
+.btn-primario:active {
+    transform: scale(0.98);
+}
+
+.estado {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #7b6d8d;
+    font-size: 0.95rem;
+    padding: 10px;
+    background: #f8f5fb;
+    border-radius: 10px;
+    border-left: 4px solid #b8a9d4;
+}
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #6b6b6b;
+    border-bottom: 2px solid #f0f0f5;
+    padding-bottom: 5px;
+}
+
+.letra-grande {
+    font-size: 90px;
+    font-weight: 900;
+    color: #7b6d8d;
+    text-align: center;
+    height: 120px;
+    line-height: 120px;
+    background: #fdfaff;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    border: 3px dashed #d8cceb;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+}
+
+.caja-frase {
+    font-size: 32px;
+    min-height: 90px;
+    padding: 15px;
+    background: #f0f7f4;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+    border: 2px solid #d0e8df;
+    font-weight: bold;
+    color: #4a6b5d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.botones-control {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-secundario, .btn-peligro {
+    flex: 1;
+    min-width: 100px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.btn-secundario {
+    background-color: #e6e9f0;
+    color: #6b6b6b;
+    border-bottom: 3px solid #c9ced8;
+}
+
+.btn-peligro {
+    background-color: #ffb3b3;
+    color: #7a2e2e;
+    border-bottom: 3px solid #e69999;
+}
+
+.btn-secundario:hover { background-color: #dce0e8; }
+.btn-peligro:hover { background-color: #ffa3a3; }
+
+.btn-secundario:active, .btn-peligro:active {
+    transform: translateY(2px);
+    border-bottom: 1px solid transparent;
+}
+
+.mensaje-final {
+    margin-top: 25px;
+    text-align: center;
+    color: #4a6b5d;
+    font-size: 1.3rem;
+    padding: 15px;
+    background: #e8f5e9;
+    border-radius: 12px;
+    min-height: 55px;
+    border-left: 5px solid #a5d6a7;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .contenedor-principal {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .seccion-camara, .seccion-resultados {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .letra-grande {
+        font-size: 70px;
+        height: 100px;
+        line-height: 100px;
+    }
+
+    .caja-frase {
+        font-size: 24px;
+    }
+}

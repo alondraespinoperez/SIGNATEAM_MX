@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,29 @@
         <p>Traductor de lenguaje de Señas Mexicana (LSM) en Tiempo Real</p>
     </header>
 
-    <main class="contenedor-principal"></main>
+    <main class="contenedor-principal">
+        <section class="seccion-camara">
+            <div id="webcam-container"></div>
+            <button id="btnIniciar" onclick="init()" class="btn-primario">Iniciar Cámara</button>
+            <div id="estado-modelo" class="estado">Estado: Esperando inicio...</div>
+        </section>
+
+        <section class="seccion-resultados">
+            <h2>Letra Detectada</h2>
+            <div id="letra-actual" class="letra-grande">-</div>
+
+            <h2>Frase Construida</h2>
+            <div id="frase-construida" class="caja-frase">Escribe aquí...</div>
+
+            <div class="botones-control">
+                <button onclick="borrarUltimaLetra()" class="btn-secundario">Borrar Letra</button>
+                <button onclick="borrarTodo()" class="btn-peligro">Borrar Todo</button>
+                <button onclick="agregarEspacio()" class="btn-secundario">Añadir Espacio</button>
+            </div>
+            <h3 id="mensaje-final" class="mensaje-final"></h3>
+            </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
