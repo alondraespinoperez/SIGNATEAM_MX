@@ -1,10 +1,9 @@
 const URL = "./model/"; 
 let model, webcam, maxPredictions;
 
-let letraActual = "";
 let frase = "";
 let contadorEstabilidad = 0;
-const FRAMES_NECESARIOS = 15; 
+const FRAMES_NECESARIOS = 15;
 let cooldown = false; 
 let ultimaLetraEscrita = "";
 
@@ -18,7 +17,7 @@ async function init() {
         model = await tmImage.load(modelURL, metadataURL);
         maxPredictions = model.getTotalClasses();
 
-        const flip = true; 
+        const flip = false; 
         webcam = new tmImage.Webcam(400, 300, flip); 
         await webcam.setup(); 
         await webcam.play();
@@ -30,7 +29,7 @@ async function init() {
         document.getElementById("webcam-container").appendChild(webcam.canvas);
     } catch (error) {
         console.error("Error al cargar:", error);
-        document.getElementById("estado-modelo").innerText = "Error: Revisa que la carpeta 'model' exista y tenga los archivos correctos.";
+        document.getElementById("estado-modelo").innerText = "Error: Revisa que la carpeta 'model' exista.";
     }
 }
 
@@ -55,32 +54,38 @@ async function predict() {
 
     const letraDisplay = document.getElementById("letra-actual");
 
-    if (highestProb > 0.85) {
-        letraDisplay.innerText = bestClass;
-        letraActual = bestClass;
+    if (bestClass === "NADA") {
+        letraDisplay.innerText = "-";
+        contadorEstabilidad = 0;
+        ultimaLetraEscrita = ""; 
+        return;
+    }
 
-        if (letraActual === ultimaLetraEscrita) {
+    if (highestProb > 0.99) {
+        letraDisplay.innerText = bestClass;
+
+        if (bestClass === ultimaLetraEscrita) {
             contadorEstabilidad = 0;
         } else {
             contadorEstabilidad++;
             
             if (contadorEstabilidad >= FRAMES_NECESARIOS && !cooldown) {
-                escribirLetra(letraActual);
-                ultimaLetraEscrita = letraActual;
+                escribirLetra(bestClass);
+                ultimaLetraEscrita = bestClass;
                 cooldown = true;
                 
                 setTimeout(() => { 
                     cooldown = false; 
                     contadorEstabilidad = 0;
-                }, 1500);
+                }, 2000);
             }
         }
     } else {
         letraDisplay.innerText = "-";
         contadorEstabilidad = 0;
         
-        if (highestProb < 0.5) {
-            ultimaLetraEscrita = "";
+        if (highestProb < 0.50) {
+            ultimaLetraEscrita = ""; 
         }
     }
 }
@@ -106,7 +111,7 @@ function actualizarPantallaFrase() {
 function borrarUltimaLetra() {
     frase = frase.slice(0, -1);
     actualizarPantallaFrase();
-    ultimaLetraEscrita = "";
+    ultimaLetraEscrita = ""; 
 }
 
 function borrarTodo() {
